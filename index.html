@@ -1,183 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <header class="top-nav">
-            <div class="logo">To-Do List</div>
-            <div class="nav-menu">
-                <a href="#" class="nav-item active" data-page="home">
-                    <i class="fas fa-home"></i> <span>Home</span>
-                </a>
-                <a href="#" class="nav-item" data-page="all-tasks">
-                    <i class="fas fa-tasks"></i> <span>All Tasks</span>
-                </a>
-                <a href="#" class="nav-item" data-page="add-task">
-                    <i class="fas fa-plus"></i> <span>Add Task</span>
-                </a>
-                <div class="notification-bell">
-                    <i class="fas fa-bell"></i>
-                    <div id="notification-center" class="notification-center">
-                        <h4>Notifications History</h4>
-                        <ul id="notification-list" class="notification-list">
-                            </ul>
-                    </div>
-                </div>
+      <header class="top-nav">
+        <div class="logo">To-Do List</div>
+        <div class="nav-menu">
+          <a href="#" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i> <span>Home</span>
+          </a>
+          <a href="#" class="nav-item" data-page="all-tasks">
+            <i class="fas fa-tasks"></i> <span>All Tasks</span>
+          </a>
+          <a href="#" class="nav-item" data-page="add-task">
+            <i class="fas fa-plus"></i> <span>Add Task</span>
+          </a>
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <div id="notification-center" class="notification-center">
+              <h4>Notifications History</h4>
+              <ul id="notification-list" class="notification-list"></ul>
             </div>
-        </header>
+          </div>
+        </div>
+      </header>
 
-        <main class="main-content">
-            <div id="home-page" class="page active">
-                <header class="page-header">
-                    <h2>Dashboard</h2>
-                </header>
-
-                <div class="stats-grid">
-                    <div class="stats-card">
-                        <h3>Total Tasks</h3>
-                        <span id="total-tasks-count">0</span>
-                    </div>
-                    <div class="stats-card">
-                        <h3>Completed</h3>
-                        <span id="completed-tasks-count">0</span>
-                    </div>
-                    <div class="stats-card">
-                        <h3>Pending</h3>
-                        <span id="pending-tasks-count">0</span>
-                    </div>
-                </div>
-
-                <section class="tasks-summary">
-                    <header class="section-header">
-                        <h3>Today's Tasks</h3>
-                        <a href="#" class="view-all-link" data-page="all-tasks">View All <i class="fas fa-arrow-right"></i></a>
-                    </header>
-                    <ul id="today-tasks-list" class="tasks-list-brief">
-                        </ul>
-                </section>
+      <main class="main-content">
+        <div id="home-page" class="page active">
+          <header class="page-header">
+            <h2>Dashboard</h2>
+          </header>
+          <div class="stats-grid">
+            <div class="stats-card">
+              <h3>Total Tasks</h3>
+              <span id="total-tasks-count">0</span>
             </div>
-
-            <div id="all-tasks-page" class="page">
-                <header class="page-header">
-                    <h2>All Tasks</h2>
-                    <div class="filter-sort-group">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="todo">To-Do</button>
-                        <button class="filter-btn" data-filter="completed">Done</button>
-                        <select id="sort-by">
-                            <option value="date">Sort by Date</option>
-                            <option value="priority">Sort by Priority</option>
-                        </select>
-                    </div>
-                </header>
-                <ul id="tasks-list" class="tasks-list">
-                    </ul>
+            <div class="stats-card">
+              <h3>Completed</h3>
+              <span id="completed-tasks-count">0</span>
             </div>
-
-            <div id="add-task-page" class="page">
-                <header class="page-header">
-                    <h2>Add New Task</h2>
-                </header>
-                <form id="add-task-form" class="task-form">
-                    <div class="form-group">
-                        <label for="task-input">Task Title</label>
-                        <input type="text" id="task-input" required placeholder="Enter a task title...">
-                    </div>
-                    <div class="form-group">
-                        <label for="task-details">Details (Optional)</label>
-                        <textarea id="task-details" rows="3" placeholder="Add more details about the task..."></textarea>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="priority-select">Priority</label>
-                            <select id="priority-select" required>
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="due-date-input">Date</label>
-                            <input type="date" id="due-date-input" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tag-select">Category</label>
-                        <select id="tag-select">
-                            <option value="general">General</option>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="study">Study</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> Add Task</button>
-                </form>
+            <div class="stats-card">
+              <h3>Pending</h3>
+              <span id="pending-tasks-count">0</span>
             </div>
-        </main>
+          </div>
+          <section class="tasks-summary">
+            <header class="section-header">
+              <h3>Today's Tasks</h3>
+              <a href="#" class="view-all-link" data-page="all-tasks"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </header>
+            <ul id="today-tasks-list" class="tasks-list-brief"></ul>
+          </section>
+        </div>
+        <div id="all-tasks-page" class="page">
+          <header class="page-header">
+            <h2>All Tasks</h2>
+            <div class="filter-sort-group">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="todo">To-Do</button>
+              <button class="filter-btn" data-filter="completed">Done</button>
+              <select id="sort-by">
+                <option value="date">Sort by Date</option>
+                <option value="priority">Sort by Priority</option>
+              </select>
+            </div>
+          </header>
+          <ul id="tasks-list" class="tasks-list"></ul>
+        </div>
+        <div id="add-task-page" class="page">
+          <header class="page-header">
+            <h2>Add New Task</h2>
+          </header>
+          <form id="add-task-form" class="task-form">
+            <div class="form-group">
+              <label for="task-input">Task Title</label>
+              <input
+                type="text"
+                id="task-input"
+                required
+                placeholder="Enter a task title..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="task-details">Details (Optional)</label>
+              <textarea
+                id="task-details"
+                rows="3"
+                placeholder="Add more details about the task..."
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="priority-select">Priority</label>
+                <select id="priority-select" required>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="due-date-input">Date</label>
+                <input type="date" id="due-date-input" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="tag-select">Category</label>
+              <select id="tag-select">
+                <option value="general">General</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="study">Study</option>
+              </select>
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-plus"></i> Add Task
+            </button>
+          </form>
+        </div>
+      </main>
     </div>
 
     <div id="edit-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Edit Task</h2>
-            <form id="edit-task-form" class="task-form">
-                <input type="hidden" id="edit-task-id">
-                <div class="form-group">
-                    <label for="edit-task-title">Task Title</label>
-                    <input type="text" id="edit-task-title" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-task-details">Details (Optional)</label>
-                    <textarea id="edit-task-details" rows="3"></textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="edit-priority-select">Priority</label>
-                        <select id="edit-priority-select" required>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit-due-date-input">Due Date</label>
-                        <input type="date" id="edit-due-date-input" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="edit-tag-select">Tag</label>
-                    <select id="edit-tag-select">
-                        <option value="general">General</option>
-                        <option value="work">Work</option>
-                        <option value="personal">Personal</option>
-                        <option value="study">Study</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-btn">Save Changes</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Edit Task</h2>
+        <form id="edit-task-form" class="task-form">
+          <input type="hidden" id="edit-task-id" />
+          <div class="form-group">
+            <label for="edit-task-title">Task Title</label>
+            <input type="text" id="edit-task-title" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-task-details">Details (Optional)</label>
+            <textarea id="edit-task-details" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-priority-select">Priority</label>
+              <select id="edit-priority-select" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="edit-due-date-input">Due Date</label>
+              <input type="date" id="edit-due-date-input" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="edit-tag-select">Tag</label>
+            <select id="edit-tag-select">
+              <option value="general">General</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="study">Study</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Save Changes</button>
+        </form>
+      </div>
     </div>
 
     <div id="delete-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Confirm Deletion</h2>
-            <p>Are you sure you want to delete this task?</p>
-            <div class="modal-actions">
-                <button id="confirm-delete-btn" class="submit-btn delete-btn">Yes, Delete</button>
-                <button id="cancel-delete-btn" class="submit-btn">Cancel</button>
-            </div>
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete this task?</p>
+        <div class="modal-actions">
+          <button id="confirm-delete-btn" class="submit-btn delete-btn">
+            Yes, Delete
+          </button>
+          <button id="cancel-delete-btn" class="submit-btn">Cancel</button>
         </div>
+      </div>
     </div>
 
     <div id="toast-notification-container"></div>
 
+    <audio
+      id="completion-sound"
+      src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3"
+    ></audio>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
